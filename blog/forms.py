@@ -7,3 +7,4 @@ class TopicForm(forms.ModelForm):
         model = Topic
         fields = ['text']
         labels = {'text': ''}
+        widgets = {'text': forms.Textarea(attrs={'cols': 80})}
