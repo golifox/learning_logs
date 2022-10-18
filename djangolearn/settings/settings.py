@@ -25,7 +25,10 @@ INSTALLED_APPS = [
     # Local apps
     'blog',
     'users',
-    'bootstrap4',
+    'myapi.apps.MyapiConfig',
+
+    # Some advanced Django applications
+    'rest_framework',
 
     # Default Django apps.
     'django.contrib.admin',
@@ -35,6 +38,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'django.contrib.auth',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+    
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -97,6 +111,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# My settings
+LOGIN_URL = 'users:login'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/

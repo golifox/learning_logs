@@ -1,29 +1,19 @@
 {% extends "blog/main.html" %}
 {% block content %}
-  <!--Topics-->
-  <div class="container">
     <p>
-      <h1 class="font-weight-bold">Topics ({{ topics|length }} items)</h1>
-      <a href="{% url 'blog:new_topic' %}"
-         class="btn btn-primary btn-lg active"
-         role="button"
-         aria-pressed="true">Add</a>
+      <h1>Topics ({{ topics|length }} items)</h1>
+      <h2>
+        <a href="{% url 'blog:new_topic' %}">Add</a>
+      </h2>
     </p>
-    <hr>
-    <br>
-    <div class="row">
-      {% for topic in topics %}
-        <div class="col-sm-12 col-md-6 col-lg-4 pb-4">
-          <div class="card h-100" style="border:none">
-            <div class="card-body">
-              <h5 class="card-title">{{ topic }}</h5>
-              <a href={% url 'blog:topic' topic.id %} class="btn btn-warning">Read</a>
-            </div>
-          </div>
-        </div>
-      {% empty %}
-        <p>No topics have been added yet.</p>
-      {% endfor %}
-    </div>
-  </div>
-{% endblock content %}
+    {% for topic in topics %}
+      <h2>{{forloop.counter}}. {{ topic }} (
+      <a href={% url 'blog:topic' topic.id %}>Read</a>
+      <a href="{% url 'blog:new_topic' %}">Edit</a>
+      <a href="{% url 'blog:new_topic' %}">Delete</a>
+      )
+      </h2>
+    {% empty %}
+      <p>No topics have been added yet.</p>
+    {% endfor %}
+  {% endblock content %}
